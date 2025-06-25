@@ -9,7 +9,7 @@ First clone the repository to your preferred location.
 
 Open a terminal in the directory of the repository and run ```docker build -t task-mover-bot . ```
 
-Now you should have the docker image of the application. Before we build the docker container we'll need to make a .env file that has the key for the bot that you've invited to your discord server with your discord account. Go to [text](https://discord.com/developers/applications) and do the following:
+Now you should have the docker image of the application. Before we build the docker container we'll need to make a .env file that has the key for the bot that you've invited to your discord server with your discord account. Go to (https://discord.com/developers/applications) and do the following:
 - Make a New Application
 - Go to the Bot tab on the left
 - Invite a bot to your server. You should be able to ensure this worked by seeing them in your server
