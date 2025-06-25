@@ -1,0 +1,11 @@
+# Node
+node_modules/
+npm-debug.log
+
+# Docker
+token.env
+task-mover-bot.tar.gz
+
+# OS / Editor
+.DS_Store
+.env
