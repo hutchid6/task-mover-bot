@@ -7,7 +7,7 @@ In order to setup this app you can simply clone the repository and use the Docke
 
 First clone the repository to your preferred location.
 
-Open a terminal in the directory of the repository and run ```console docker build -t task-mover-bot . ```
+Open a terminal in the directory of the repository and run ```docker build -t task-mover-bot . ```
 
 Now you should have the docker image of the application. Before we build the docker container we'll need to make a .env file that has the key for the bot that you've invited to your discord server with your discord account. Go to [text](https://discord.com/developers/applications) and do the following:
 - Make a New Application
@@ -15,8 +15,8 @@ Now you should have the docker image of the application. Before we build the doc
 - Invite a bot to your server. You should be able to ensure this worked by seeing them in your server
 - Get the private Token of your bot and save it in a safe place. You may need to reset the token if you missed it
 
-Once you have the bot in your server and have its private token, you can make a file in the task-mover-bot directory called "token.env". The only thing your .env file needs is ```bash BOT_KEY=your_bot_token_here``` You'll want to replace "your_bot_token_here" with your actual bot token. Make sure this bot token stays hidden for security purposes and is not posted anywhere online or accidentally added to git.
+Once you have the bot in your server and have its private token, you can make a file in the task-mover-bot directory called "token.env". The only thing your .env file needs is ```BOT_KEY=your_bot_token_here``` You'll want to replace "your_bot_token_here" with your actual bot token. Make sure this bot token stays hidden for security purposes and is not posted anywhere online or accidentally added to git.
 
-Next run ```console docker run -d --restart=always --env-file token.env task-mover-bot``` You can change the settings on this, I have these settings because I'm setting this docker image up to be used on a Raspberry Pi that is on 24/7.
+Next run ```docker run -d --restart=always --env-file token.env task-mover-bot``` You can change the settings on this, I have these settings because I'm setting this docker image up to be used on a Raspberry Pi that is on 24/7.
 
 Now the docker container should be running from your computer and you should be able to use the discord bot! To check if it's working simply type "!help" in any of your channels. The bot should also be appearing online. For instructions on how to specifically use the bot, refer to the help command.
