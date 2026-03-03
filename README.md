@@ -47,4 +47,8 @@ The bot requires the following permissions to function:
 - Send Messages
 - Manage Messages
 ## Future Work
-Please feel free to fork this or use this code however you like. One simple and easy thing I may add in the future is the ability to allow the user to choose which emoji they'd like to use as the reaction emoji for moving tasks. Or even allowing multiple emojis.
+Please feel free to fork this or use this code however you like. One simple and easy thing I may add in the future is the ability to allow the user to choose which emoji they'd like to use as the reaction emoji for moving tasks. Or even allowing multiple emojis. 
+
+There is also currently a bug where if you have a channel connection, and then delete one of the channels, there is no way to delete that connection without editing the json directly.
+
+Finally for all the feedback messages it'd be nice if for each channel's name that is displayed, it would show which category that channel belongs to. That way you can distinguish between channels that have the same name but are in different categories.
