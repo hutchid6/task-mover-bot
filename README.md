@@ -14,11 +14,37 @@ Now you should have the docker image of the application. Before we build the doc
 - Go to the Bot tab on the left
 - Invite a bot to your server. You should be able to ensure this worked by seeing them in your server
 - Get the private Token of your bot and save it in a safe place. You may need to reset the token if you missed it
+- Get the Application ID of your bot and save it in a safe place from General Information
 
-Once you have the bot in your server and have its private token, you can make a file in the task-mover-bot directory called "token.env". The only thing your .env file needs is ```BOT_KEY=your_bot_token_here``` You'll want to replace "your_bot_token_here" with your actual bot token. Make sure this bot token stays hidden for security purposes and is not posted anywhere online or accidentally added to git.
+Once you have the bot in your server and have its private token, you can make a file in the task-mover-bot directory called "token.env". The first thing your .env file needs is ```BOT_KEY=your_bot_token_here``` You'll want to replace "your_bot_token_here" with your actual bot token. Make sure this bot token stays hidden for security purposes and is not posted anywhere online or accidentally added to git. The other thing your .env needs is ```CLIENT_ID=your_application_id_here```. Make sure this token also stays hidden.
+
+Next we want to register the bot's slash commands with Discord. You only need to run this once 
+Run this once to register the bot's slash commands with Discord:
+```npm install```
+```npm run deploy```
+You only need to re-run this if you add, remove, or rename commands.
+It does not need to be run again when moving the bot to a new machine
 
 Next run ```docker run -d --restart=unless-stopped --env-file token.env task-mover-bot``` You can change the settings on this, I have these settings because I'm setting this docker image up to be used on a Raspberry Pi that is on 24/7.
 
 Now the docker container should be running from your computer and you should be able to use the discord bot! To check if it's working simply type "!help" in any of your channels. The bot should also be appearing online. For instructions on how to specifically use the bot, refer to the help command.
+## Running on a Raspberry Pi (or other remote machine)
+Build a multi-platform image and push it to Docker Hub:
+```docker buildx create --use```
+```docker buildx build --platform linux/amd64,linux/arm64 -t yourusername/task-mover-bot --push .```
+
+Copy `token.env` to the Pi:
+```ssh pi@raspberrypi.local "mkdir -p ~/task-mover-bot"```
+```scp token.env pi@raspberrypi.local:~/task-mover-bot/token.env```
+
+Then on the Pi:
+```docker pull yourusername/task-mover-bot```
+```docker run -d --restart=unless-stopped --env-file ~/task-mover-bot/token.env yourusername/task-mover-bot```
+### Required bot permissions
+The bot requires the following permissions to function:
+- View Channel
+- Read Message History
+- Send Messages
+- Manage Messages
 ## Future Work
-Please feel free to fork this or use this code however you like. One simple and easy thing I may add in the future is the ability to allow the user to choose which emoji they'd like to use as the reaction emoji for moving tasks. Or even allowing multiple emojis. I also think it would be nice if the interface for this bot was more non-developer friendly. The process of getting channel ids and linking them could be confusing and tedious.
+Please feel free to fork this or use this code however you like. One simple and easy thing I may add in the future is the ability to allow the user to choose which emoji they'd like to use as the reaction emoji for moving tasks. Or even allowing multiple emojis.
